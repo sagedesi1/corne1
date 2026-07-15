@@ -9,10 +9,56 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    combos {
+        compatible = "zmk,combos";
+
+        copy {
+            bindings = <&kp K_COPY>;
+            key-positions = <26 27>;
+        };
+
+        paste {
+            bindings = <&kp K_PASTE>;
+            key-positions = <27 28>;
+        };
+
+        s_quote {
+            bindings = <&kp SINGLE_QUOTE>;
+            key-positions = <4 3>;
+        };
+
+        d_quote {
+            bindings = <&kp DOUBLE_QUOTES>;
+            key-positions = <3 4 2>;
+        };
+
+        linux_word_del {
+            bindings = <&kp LC(DELETE)>;
+            key-positions = <32 33>;
+        };
+
+        colon {
+            bindings = <&kp COLON>;
+            key-positions = <7 19>;
+        };
+    };
+
+    behaviors {
+        caps_word_shift: caps_word_shift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "CAPS_WORD_SHIFT";
+            bindings = <&caps_word>, <&sk>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        text {
             display-name = "Default Layer";
 
             // -----------------------------------------------------------------------------------------
@@ -22,14 +68,14 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp E     &kp R  &kp T        &kp Y    &kp U  &kp I      &kp O    &kp P     &kp BSPC
-&kp LCTRL  &kp A  &kp S  &kp D     &kp F  &kp G        &kp H    &kp J  &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LSHFT  &kp Z  &kp X  &kp C     &kp V  &kp B        &kp N    &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp ESC
-                         &kp LGUI  &mo 1  &kp SPACE    &kp RET  &mo 2  &kp RALT
+&kp TAB    &kp Q  &kp W  &kp F  &kp P  &kp B        &kp J                          &kp L  &kp U      &kp Y    &kp SEMICOLON  &kp BSPC
+&kp LCTRL  &kp A  &kp R  &kp S  &kp T  &kp G        &kp K                          &kp N  &kp E      &kp I    &kp O          &kp SQT
+&kp LSHFT  &kp Z  &kp X  &kp C  &kp D  &kp V        &kp M                          &kp H  &kp COMMA  &kp DOT  &kp FSLH       &kp ESC
+                         &mo 1  &mo 1  &kp SPACE    &caps_word_shift 0 LEFT_SHIFT  &mo 2  &kp RALT
             >;
         };
 
-        lower_layer {
+        navigation {
             display-name = "Lower Layer";
 
             // -----------------------------------------------------------------------------------------
@@ -39,14 +85,14 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB     &kp N1        &kp N2        &kp N3        &kp N4        &kp N5          &kp N6    &kp N7    &kp N8    &kp N9     &kp N0  &kp BSPC
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT  &trans  &kp DEL
-&kp LSHFT   &trans        &trans        &trans        &trans        &trans          &trans    &trans    &trans    &trans     &trans  &trans
-                                        &kp LGUI      &trans        &kp SPACE       &kp RET   &trans    &kp RALT
+&kp TAB     &kp N1        &kp N2            &kp N3        &kp N4            &kp N5          &kp N6    &kp N7    &kp UP_ARROW  &kp N9     &kp N0  &kp BSPC
+&bt BT_CLR  &bt BT_SEL 0  &kp LEFT          &kp LEFT_ALT  &kp TAB           &bt BT_SEL 4    &kp LEFT  &kp LEFT  &kp DOWN      &kp RIGHT  &kp     &kp DEL
+&kp LSHFT   &kp           &kp LEFT_CONTROL  &kp LSHIFT    &kp LEFT_COMMAND  &kp             &kp       &kp       &kp           &kp        &kp     &kp
+                                            &kp LGUI      &kp               &kp SPACE       &kp RET   &kp       &kp RALT
             >;
         };
 
-        raise_layer {
+        symbols {
             display-name = "Raise Layer";
 
             // -----------------------------------------------------------------------------------------
@@ -56,11 +102,29 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB    &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
-&kp LCTRL  &trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH  &kp GRAVE
-&kp LSHFT  &trans    &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
-                             &kp LGUI  &trans    &kp SPACE    &kp RET    &trans     &kp RALT
+&kp TAB    &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp GRAVE     &kp LEFT_BRACE        &kp ASTRK      &kp RIGHT_BRACE        &kp RPAR  &kp BSPC
+&kp LCTRL  &trans    &trans  &trans    &trans    &trans       &kp KP_EQUAL  &kp LEFT_PARENTHESIS  &kp ENTER      &kp RIGHT_PARENTHESIS  &kp BSLH  &kp GRAVE
+&kp LSHFT  &trans    &trans  &trans    &trans    &trans       &kp PLUS      &kp LEFT_BRACKET      &kp LS(ENTER)  &kp RIGHT_BRACKET      &kp PIPE  &kp TILDE
+                             &kp LGUI  &trans    &kp SPACE    &kp RET       &trans                &kp RALT
             >;
+        };
+
+        numbers {
+            bindings = <
+&trans  &trans  &kp N6  &kp N7  &kp N8  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &kp N1  &kp N0  &kp N2  &kp N9    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &kp N3  &kp N4  &kp N5  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans    &trans  &trans  &trans
+            >;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        Navigation {
+            if-layers = <1>;
+            then-layer = <0>;
         };
     };
 };
