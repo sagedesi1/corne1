@@ -44,14 +44,12 @@
     };
 
     behaviors {
-        caps_word_shift: caps_word_shift {
-            compatible = "zmk,behavior-hold-tap";
-            label = "CAPS_WORD_SHIFT";
-            bindings = <&caps_word>, <&sk>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            flavor = "tap-preferred";
+        caps_shift: caps_shift {
+            compatible = "zmk,behavior-caps-word";
+            label = "CAPS_SHIFT";
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT)>;
+            continue-list = <DELETE>;
         };
     };
 
@@ -68,10 +66,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp TAB    &kp Q  &kp W  &kp F  &kp P  &kp B        &kp J                          &kp L  &kp U      &kp Y    &kp SEMICOLON  &kp BSPC
-&kp LCTRL  &kp A  &kp R  &kp S  &kp T  &kp G        &kp K                          &kp N  &kp E      &kp I    &kp O          &kp SQT
-&kp LSHFT  &kp Z  &kp X  &kp C  &kp D  &kp V        &kp M                          &kp H  &kp COMMA  &kp DOT  &kp FSLH       &kp ESC
-                         &mo 1  &mo 1  &kp SPACE    &caps_word_shift 0 LEFT_SHIFT  &mo 2  &kp RALT
+&kp TAB    &kp Q  &kp W  &kp F  &kp P  &kp B        &kp J        &kp L  &kp U      &kp Y    &kp SEMICOLON  &kp BSPC
+&kp LCTRL  &kp A  &kp R  &kp S  &kp T  &kp G        &kp K        &kp N  &kp E      &kp I    &kp O          &kp SQT
+&kp LSHFT  &kp Z  &kp X  &kp C  &kp D  &kp V        &kp M        &kp H  &kp COMMA  &kp DOT  &kp FSLH       &kp ESC
+                         &mo 1  &mo 1  &kp SPACE    &caps_shift  &mo 2  &kp RALT
             >;
         };
 
