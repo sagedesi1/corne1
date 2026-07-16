@@ -94,12 +94,23 @@
     };
 
     behaviors {
-        caps_shift: caps_shift {
-            compatible = "zmk,behavior-caps-word";
-            label = "CAPS_SHIFT";
-            #binding-cells = <0>;
-            mods = <(MOD_LSFT)>;
-            continue-list = <DELETE>;
+        one_shot_shift: one_shot_shift {
+            compatible = "zmk,behavior-sticky-key";
+            label = "ONE_SHOT_SHIFT";
+            bindings = <&kp>;
+            #binding-cells = <1>;
+            release-after-ms = <1000>;
+            quick-release;
+        };
+
+        shift_caps: shift_caps {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SHIFT_CAPS";
+            bindings = <&caps_word>, <&one_shot_shift>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "tap-preferred";
         };
     };
 
@@ -116,15 +127,15 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp TAB      &kp Q  &kp W  &kp F  &kp P  &kp B              &kp J                    &kp L  &kp U       &kp Y    &kp BACKSPACE  &kp DELETE
-&kp LA(TAB)  &kp A  &kp R  &kp S  &kp T  &kp G              &kp K                    &kp N  &kp E       &kp I    &kp O          &kp SQT
-&kp LSHFT    &kp Z  &kp X  &kp C  &kp D  &kp V              &kp M                    &kp H  &kp COMMA   &kp DOT  &kp FSLH       &kp ESC
-                           &mo 3  &mo 1  &mt LCTRL SPACE    &mt CAPSLOCK LEFT_SHIFT  &mo 2  &caps_word
+&kp TAB      &kp Q  &kp W  &kp F  &kp P  &kp B              &kp J                     &kp L  &kp U       &kp Y    &kp BACKSPACE  &kp DELETE
+&kp LA(TAB)  &kp A  &kp R  &kp S  &kp T  &kp G              &kp K                     &kp N  &kp E       &kp I    &kp O          &kp SQT
+&kp LSHFT    &kp Z  &kp X  &kp C  &kp D  &kp V              &kp M                     &kp H  &kp COMMA   &kp DOT  &kp FSLH       &kp ESC
+                           &mo 3  &mo 1  &mt LCTRL SPACE    &shift_caps 0 LEFT_SHIFT  &mo 2  &caps_word
             >;
         };
 
         navigation {
-            display-name = "Lower Layer";
+            display-name = "NAV";
 
             // -----------------------------------------------------------------------------------------
             // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
@@ -141,7 +152,7 @@
         };
 
         symbols {
-            display-name = "Raise Layer";
+            display-name = "SYM";
 
             // -----------------------------------------------------------------------------------------
             // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
@@ -164,6 +175,8 @@
 &none  &none  &kp N3  &kp N4  &kp N5  &none     &none  &none  &none  &none  &none  &none
                       &none   &none   &none     &none  &none  &none
             >;
+
+            label = "NUM";
         };
     };
 
