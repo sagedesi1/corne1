@@ -109,7 +109,17 @@
             bindings = <&caps_word>, <&one_shot_shift>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <300>;
+            flavor = "tap-preferred";
+        };
+
+        space_control: space_control {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SPACE_CONTROL";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <300>;
             flavor = "tap-preferred";
         };
     };
@@ -127,10 +137,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp TAB      &kp Q  &kp W  &kp F  &kp P  &kp B              &kp J                     &kp L  &kp U        &kp Y    &kp BACKSPACE  &kp DELETE
-&kp LA(TAB)  &kp A  &kp R  &kp S  &kp T  &kp G              &kp K                     &kp N  &kp E        &kp I    &kp O          &kp SQT
-&kp LSHFT    &kp Z  &kp X  &kp C  &kp D  &kp V              &kp M                     &kp H  &kp COMMA    &kp DOT  &kp FSLH       &kp ESC
-                           &mo 3  &mo 1  &mt LCTRL SPACE    &shift_caps 0 LEFT_SHIFT  &mo 2  &kp LA(TAB)
+&kp TAB      &kp Q  &kp W  &kp F  &kp P  &kp B                         &kp J                     &kp L  &kp U        &kp Y    &kp BACKSPACE  &kp DELETE
+&kp LA(TAB)  &kp A  &kp R  &kp S  &kp T  &kp G                         &kp K                     &kp N  &kp E        &kp I    &kp O          &kp SQT
+&kp LSHFT    &kp Z  &kp X  &kp C  &kp D  &kp V                         &kp M                     &kp H  &kp COMMA    &kp DOT  &kp FSLH       &kp ESC
+                           &mo 3  &mo 1  &space_control LCTRL SPACE    &shift_caps 0 LEFT_SHIFT  &mo 2  &kp LA(TAB)
             >;
         };
 
