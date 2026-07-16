@@ -154,10 +154,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB     &none         &kp LS(LC(TAB))   &kp ESCAPE    &kp LC(TAB)       &none           &none    &kp K_VOLUME_DOWN      &kp UP_ARROW  &kp K_VOLUME_UP       &none  &none
-&bt BT_CLR  &bt BT_SEL 0  &kp LEFT          &kp LEFT_ALT  &kp TAB           &bt BT_SEL 4    &none    &kp LEFT               &kp DOWN      &kp RIGHT             &none  &none
-&kp LSHFT   &none         &kp LEFT_CONTROL  &kp LSHIFT    &kp LEFT_COMMAND  &none           &none    &kp C_BRIGHTNESS_AUTO  &none         &kp C_BRIGHTNESS_INC  &none  &none
-                                            &kp LGUI      &none             &kp SPACE       &kp RET  &none                  &kp RALT
+&kp TAB     &none         &kp LS(LC(TAB))   &kp ESCAPE    &kp LC(TAB)       &none           &none    &kp K_VOLUME_DOWN     &kp UP_ARROW  &kp K_VOLUME_UP       &none  &none
+&bt BT_CLR  &bt BT_SEL 0  &kp LEFT          &kp LEFT_ALT  &kp TAB           &bt BT_SEL 4    &none    &kp LEFT              &kp DOWN      &kp RIGHT             &none  &none
+&kp LSHFT   &none         &kp LEFT_CONTROL  &kp LSHIFT    &kp LEFT_COMMAND  &none           &none    &kp C_BRIGHTNESS_DEC  &none         &kp C_BRIGHTNESS_INC  &none  &none
+                                            &kp LGUI      &none             &kp SPACE       &kp RET  &none                 &kp RALT
             >;
         };
 
