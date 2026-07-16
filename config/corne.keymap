@@ -127,10 +127,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp TAB      &kp Q  &kp W  &kp F  &kp P  &kp B              &kp J                     &kp L  &kp U       &kp Y    &kp BACKSPACE  &kp DELETE
-&kp LA(TAB)  &kp A  &kp R  &kp S  &kp T  &kp G              &kp K                     &kp N  &kp E       &kp I    &kp O          &kp SQT
-&kp LSHFT    &kp Z  &kp X  &kp C  &kp D  &kp V              &kp M                     &kp H  &kp COMMA   &kp DOT  &kp FSLH       &kp ESC
-                           &mo 3  &mo 1  &mt LCTRL SPACE    &shift_caps 0 LEFT_SHIFT  &mo 2  &caps_word
+&kp TAB      &kp Q  &kp W  &kp F  &kp P  &kp B              &kp J                     &kp L  &kp U        &kp Y    &kp BACKSPACE  &kp DELETE
+&kp LA(TAB)  &kp A  &kp R  &kp S  &kp T  &kp G              &kp K                     &kp N  &kp E        &kp I    &kp O          &kp SQT
+&kp LSHFT    &kp Z  &kp X  &kp C  &kp D  &kp V              &kp M                     &kp H  &kp COMMA    &kp DOT  &kp FSLH       &kp ESC
+                           &mo 3  &mo 1  &mt LCTRL SPACE    &shift_caps 0 LEFT_SHIFT  &mo 2  &kp LA(TAB)
             >;
         };
 
