@@ -91,6 +91,11 @@
             bindings = <&kp SEMI>;
             key-positions = <6 18>;
         };
+
+        question {
+            bindings = <&kp QUESTION>;
+            key-positions = <4 16>;
+        };
     };
 
     behaviors {
